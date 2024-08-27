@@ -15,6 +15,7 @@ def create():
 
 @app.route('/create/new', methods = ["POST"])
 def create_post():
+    
     if not Product.validate_save(request.form):
         return redirect('/create')
 
@@ -40,6 +41,7 @@ def edit(product_id):
     if 'user_id' not in session:
         flash('You must first login.', 'secure')
         return redirect('/login')
+    
 
     else:
         user=User.get_one(product_id)

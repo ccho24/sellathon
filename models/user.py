@@ -63,7 +63,7 @@ class User:
             flash("Password is required", 'password')
             is_valid = False
 
-        elif len(data['password']) < 2: 
+        elif len(data['password']) < 7: 
             flash("Password must be at least 7 characters long.", 'password')
             is_valid = False
 

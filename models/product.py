@@ -58,13 +58,13 @@ class Product:
         is_valid = True
 
         if len(data['name']) < 2:
-            flash("Product name must be at least 2 characters!", 'save')
+            flash("Product name must be at least 2 characters!", 'product_name')
             is_valid = False
         if len(data['description']) < 5:
-            flash("Description must be at least 5 characters!", 'save')
+            flash("Description must be at least 5 characters!", 'description')
             is_valid =False
         if len(data['contact']) < 7:
-            flash("Contact info must be at least 7 characters!", 'save')
+            flash("Contact info must be at least 7 characters!", 'contact')
             is_valid =False
 
         return is_valid

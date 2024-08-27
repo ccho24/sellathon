@@ -33,7 +33,7 @@
     <form action="/register/user", method="post">
             <main class="d-flex flex-column align-items-center border border-success border-3 rounded-3 p-5 shadow p-3 mb-5 bg-body rounded">
                     <h2>Register</h2>
-                    <a href="/login">Already have an account? Log in!</a>
+                    <a href="/login" class="text-decoration-none">Already have an account? Log in!</a>
 
                 <div class="form-group">
                     {% with messages = get_flashed_messages(category_filter = ['fname']) %}     <!-- declare a variable called messages -->
@@ -111,7 +111,7 @@
                 
 
                     <select name="user_id" hidden></select>
-                    <input type="submit" value="Create" class="my-3">
+                    <input type="submit" value="Create" class="btn btn-primary my-3">
                 </main>
 </form>  
 

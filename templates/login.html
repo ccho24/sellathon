@@ -32,7 +32,7 @@
     <form action="/login/user", method="post">
 
         <aside class="d-flex flex-column align-items-center border border-success border-3 rounded-3 p-5 shadow p-3 mb-5 bg-body rounded">
-            <a href="/register" class="pb-2">Don't have an account? Register!</a>
+            <a href="/register" class="text-decoration-none pb-2">Don't have an account? Register!</a>
             {% with messages = get_flashed_messages(category_filter = ['success']) %}     <!-- declare a variable called messages -->
             {% if messages %}   
                 <div class="alert alert-success">                   <!-- check if there are any messages -->
@@ -78,7 +78,7 @@
 
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
-            <input type="submit" value="Login" class="my-3">
+            <input type="submit" value="Login" class="btn btn-primary my-3">
         </aside>
     </form>
 </body>

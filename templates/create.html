@@ -8,72 +8,108 @@
 </head>
 <style>
     body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: rgb(243, 238, 238);
+    max-width: 100%;
+    font-family: "Courier New", Helvetica, sans-serif;
     }
-
+    .btn-group{
+        display: flex;
+        gap: 10px;
+    }
     main {
         color: #14a87e;
-        box-sizing: border-box; /* No background color */
+        box-sizing: border-box;
+        width: 100%; 
+        border: 3px solid #14a87e;
+        border-radius: 10px;
         padding: 20px;
-        margin-top: 10%;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);  
         }
+    .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Full-width for the container */   
+    }
 </style>
 <body>
-    <form action="/create/new" method="post">
-        {% with messages = get_flashed_messages(category_filter = ['save']) %}     <!-- declare a variable called messages -->
-        {% if messages %}   
-            <div class="alert alert-danger">                   <!-- check if there are any messages -->
-                {% for message in messages %}            <!-- loop through the messages -->
-                    <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
-                {% endfor %}
+    <header class="d-flex justify-content-between m-4">
+        <h1>Sell-A-Thon</h1>
+        <div class="btn-group">
+            <div>
+                <a href="/dashboard" class="btn btn-primary">Home</a>
             </div>
-        {% endif %}
-        {% endwith %}
-     
-        <main class="d-flex flex-column align-items-center border border-success border-3 rounded-3 p-5 shadow p-3 mb-5 bg-body rounded">
-            <label for="name">Product Name:</label>
-            <input type="text" name = "name" id = "name">
-            
-            <label for="type">Type:</label>
-            <select name="type" id="type">
-                <option value="Clothes & Accessory">Clothes & Accessory</option>
-                <option value="Outdoors">Outdoors</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Tickets & Concerts">Ticket & Concerts</option>
-                <option value="Education">Education</option>
-            </select>
-            
-            <label for="category">Condition:</label>
-            <select name="category" id="category">
-                <option value="" selected disabled hidden> </option>
-                <option value="New">New</option>
-                <option value="Like new">Like new</option>
-                <option value="Reconditioned">Reconditioned</option>
-                <option value="Used">Used</option>
-            </select>
+            <form action="/logout" method="post">
+                <input type="submit" name = "{{session['user_id']}}" value="Logout" class="btn btn-danger">   
+            </form>
+        </div>
+    </header>
+    <form action="/create/new" method="post">
+        <main class="container">
+            <div>
+                {% with messages = get_flashed_messages(category_filter = ['product_name']) %}     
+                {% if messages %}               
+                    {% for message in messages %}            
+                    <div class="text-danger">{{message}}</div>              
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+                <label for="name">Product Name:</label>
+                <input type="text" name = "name" id = "name">
+               
+                <label for="type">Type:</label>
+                <select name="type" id="type">
+                    <option value="Clothes & Accessory">Clothes & Accessory</option>
+                    <option value="Outdoors">Outdoors</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Tickets & Concerts">Ticket & Concerts</option>
+                    <option value="Education">Education</option>
+                </select>
+                
+                <label for="category">Condition:</label>
+                <select name="category" id="category">
+                    <option value="" selected disabled hidden > </option>
+                    <option value="New">New</option>
+                    <option value="Like new">Like new</option>
+                    <option value="Reconditioned">Reconditioned</option>
+                    <option value="Used">Used</option>
+                </select>
 
-            <label for="size">Size:</label>
-            <select name="size" id="size">
-                <option value="" selected disabled hidden> </option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-            </select>
+                <label for="size">Size:</label>
+                <select name="size" id="size">
+                    <option value="" selected disabled hidden> </option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+                <div>
+                    {% with messages = get_flashed_messages(category_filter = ['description']) %}     
+                    {% if messages %}               
+                        {% for message in messages %}            
+                        <div class="text-danger">{{message}}</div>              
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" cols="15" rows="5"></textarea>
+                <div>
+                    {% with messages = get_flashed_messages(category_filter = ['contact']) %}     
+                    {% if messages %}               
+                        {% for message in messages %}            
+                        <div class="text-danger">{{message}}</div>              
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <label for="contact">Contact:</label>
+                <input type="text" name = "contact" id = "contact">
 
-            <label for="description">Description:</label>
-            <textarea name="description" id="description" cols="15" rows="5"></textarea>
-
-            <label for="contact">Contact:</label>
-            <input type="text" name = "contact" id = "contact">
-            
-            
-            <input type="submit" value="Create" class="my-3">
+                <input type="submit" value="Post" class="btn btn-success my-3">
         </main>
     </form>
 </body>

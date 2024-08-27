@@ -8,9 +8,8 @@
 </head>
 <style>
     body {
-    height: 100%;
-    margin: 0;
     background:rgb(232, 226, 226);
+    font-family: "Courier New", Helvetica, sans-serif;
     }
     table{
         margin: 0 auto;
@@ -18,14 +17,14 @@
     }
 </style>
 <body>
-    <header class="d-flex justify-content-between m-4">
+    <header class="d-flex justify-content-between m-4 pt-2">
         <h1>Welcome {{session['username']}}</h1>
         <div>
             <a href="/create" class="btn btn-primary">Post</a>
         </div>
     </header>
 
-    <table class="table table-success table-striped table-hover mx-4">
+    <table class="table table-success table-striped table-hover">
         <thead>
             <th>Product Name</th>
             <th>Seller</th>
