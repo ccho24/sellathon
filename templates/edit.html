@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <form action="/edit/new" method="post">
+        <a href="/dashboard">Home</a>
+        {% for product in user.products %}
+        <input type="hidden" name = "product_id" value="{{product.id}}">
+
+        <label for="name">Product Name:</label>
+        <input type="text" name = "name" id = "name" value="{{product.name}}">
+        
+        <label for="type">Type:</label>
+        <select name="type" id="type" value="{{product.type}}">
+            <option value="Clothes & Accessory">Clothes & Accessory</option>
+            <option value="Outdoors">Outdoors</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Tickets & Concerts">Ticket & Concerts</option>
+            <option value="Education">Education</option>
+        </select>
+        
+        <label for="category">Condition: </label>
+        <select name="category" id="category" value="{{product.category}}">
+            {% if product.category is none %}
+            <option value="" selected disabled hidden></option>
+            {% endif %}
+
+            {% if product.category is not none %}
+            <option value="{{product.category}}" selected disabled hidden>{{product.category}}</option>
+            <option value="New">New</option>
+            <option value="Like new">Like new</option>
+            <option value="Reconditioned">Reconditioned</option>
+            <option value="Used">Used</option>
+            {% endif %}
+        </select>
+
+        <label for="size">Size: </label>
+        <select name="size" id="size" value="{{product.size}}">
+            {% if  product.size is none %}
+            <option value="" selected disabled hidden></option>
+            {% endif %}
+
+            {% if product.size is not none %}
+            <option value="{{product.size}}" selected disabled hidden>{{product.size}}</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            {% endif %}
+        </select>
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" cols="15" rows="5" >{{product.description}}</textarea>
+
+        <label for="contact">Contact:</label>
+        <input type="text" name = "contact" id = "contact" value="{{product.contact}}">
+        {% endfor %}
+        
+        <input type="submit" value="Update">
+</form>
+</body>
+</html>
